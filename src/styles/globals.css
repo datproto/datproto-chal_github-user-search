@@ -1,0 +1,54 @@
+@tailwind base;
+@layer base {
+    @font-face {
+        font-family: 'Space Mono', monospace;
+        font-weight: 400;
+        src: url(/fonts/SpaceMono-Regular.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: 'Space Mono', monospace;
+        font-weight: 400;
+        font-style: italic;
+        src: url(/fonts/SpaceMono-Regular.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        src: url(/fonts/SpaceMono-Bold.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        src: url(/fonts/SpaceMono-BoldItalic.ttf) format('truetype');
+    }
+    main {
+        @apply bg-github-white-ghost dark:bg-github-gunmetal-dark h-screen
+    }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply font-github text-[13px] md:text-[15px] leading-6
+}
+
+h1 ,h2 {
+    @apply font-github font-bold
+}
+
+h1 {
+    @apply text-base md:text-[26px]
+}
+
+h2 {
+    @apply text-base md:text-[22px]
+}
+
+h3 {
+    @apply text-[13px] md:text-base
+}
+
+h4 {
+    @apply text-[11px] md:text-[13px]
+}
