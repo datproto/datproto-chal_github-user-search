@@ -1,6 +1,5 @@
 import '@/styles/globals.css'
 import Providers   from '@/app/provider'
-import useTheme    from 'next-theme'
 
 export default function RootLayout({
   children,
