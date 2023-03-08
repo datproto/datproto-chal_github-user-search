@@ -27,7 +27,7 @@
     }
 }
 main {
-    @apply bg-github-white-ghost dark:bg-github-gunmetal-dark h-screen font-github text-[13px] md:text-[15px] leading-8 flex items-center justify-center px-6
+    @apply bg-github-white-ghost dark:bg-github-gunmetal-dark h-screen font-github text-[13px] md:text-[15px] leading-8 flex flex-col items-center justify-center gap-4 lg:gap-6 px-6
 }
 
 h1 ,h2 {
