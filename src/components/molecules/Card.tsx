@@ -1,8 +1,15 @@
 import React from 'react'
 import Image        from 'next/image'
+import Moment from 'react-moment'
+import {URLExtract} from '@/utils/Extractor'
+import Link from 'next/link'
 
 interface ICard {
   name: string
+  github: {
+    name: string
+    url: string
+  }
   avatar: string
   bio?: string
   twitter?: string
@@ -15,11 +22,12 @@ interface ICard {
     location?: string
     blog?: string
     twitter?: string
+    joinDate?: string
   }
 }
-function Card({name, avatar, bio, indices, personal_information}: ICard) {
+function Card({name, github, avatar, bio, indices, personal_information}: ICard) {
   return (
-    <div id="card" className='flex w-full gap-6 rounded-2xl bg-github-white-main py-8 px-6 dark:bg-github-blue-yankees md:max-w-xl md:p-10 lg:max-w-3xl lg:p-12'>
+    <div id="card" className='flex w-full gap-6 rounded-2xl bg-github-white-main py-8 px-6 dark:bg-github-blue-yankees md:p-10 lg:p-12'>
       <Image src={avatar} alt='github-user-avatar' width={300} height={300} className='hidden h-28 w-28 rounded-full lg:block' />
 
       <div className='flex flex-col gap-6'>
@@ -28,9 +36,16 @@ function Card({name, avatar, bio, indices, personal_information}: ICard) {
           <div className='flex grow flex-col justify-between lg:flex-row'>
             <div id='github_user_name'>
               <h1 className='capitalize dark:text-white'>{name}</h1>
-              <p className='text-github-blue-azure'>@octocat</p>
+              <Link href={github.url}>
+                <p className='text-github-blue-azure'>@{github.name}</p>
+              </Link>
             </div>
-            <p className='capitalize text-github-gray-slate dark:text-white'>Joinded 25 jan 2011</p>
+            <p className='capitalize text-github-gray-slate dark:text-white'>
+              Joined in {" "}
+              <Moment format='DD MMM YYYY'>
+                {personal_information?.joinDate}
+              </Moment>
+            </p>
           </div>
         </div>
 
@@ -57,23 +72,31 @@ function Card({name, avatar, bio, indices, personal_information}: ICard) {
         <div id="card_footer" className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-y-3 lg:gap-y-4'>
 
           {/* Footer - Item */}
-          <div className='flex items-center gap-3'>
-            <div className='w-5'>
-              <Image src='/icon-location.svg' alt='icon-location' height={20} width={14} />
+          {personal_information && personal_information.location && (
+            <div className={`flex items-center gap-3 ${personal_information && personal_information.location ? 'opacity-100' : 'opacity-50'} opacity-50 md:order-1`}>
+              <div className='w-5'>
+                <Image src='/icon-location.svg' alt='icon-location' height={20} width={14} />
+              </div>
+                <h3 className='capitalize text-github-blue-queen dark:text-white'>{personal_information.location}</h3>
             </div>
-            <h3 className='capitalize text-github-blue-queen dark:text-white'>{personal_information?.location}</h3>
-          </div>
+          )}
 
           {/* Footer - Item */}
-          <div className='flex items-center gap-3 md:order-3'>
-            <div className='w-5'>
-              <Image src='/icon-website.svg' alt='icon-location' height={20} width={14} />
+          {personal_information && personal_information.blog && (
+            <div className={`flex items-center gap-3 ${personal_information && personal_information.blog ? 'opacity-100' : 'opacity-50'} opacity-50 md:order-3`}>
+              <div className='w-5'>
+                <Image src='/icon-website.svg' alt='icon-location' height={20} width={14} />
+              </div>
+              <Link href={personal_information.blog}>
+                <h3 className='text-github-blue-queen hover:underline dark:text-white'>
+                  <URLExtract url={personal_information.blog} />
+                </h3>
+              </Link>
             </div>
-            <h3 className='text-github-blue-queen dark:text-white'>{personal_information?.blog}</h3>
-          </div>
+          )}
 
           {/* Footer - Item */}
-          <div className='flex items-center gap-3 opacity-50 md:order-2'>
+          <div className={`flex items-center gap-3 ${personal_information && personal_information.twitter ? 'opacity-100' : 'opacity-50'} opacity-50 md:order-2`}>
             <div className='w-5'>
               <Image src='/icon-twitter.svg' alt='icon-location' height={18} width={20} />
             </div>
@@ -85,7 +108,11 @@ function Card({name, avatar, bio, indices, personal_information}: ICard) {
             <div className='w-5'>
               <Image src='/icon-company.svg' alt='icon-location' height={20} width={14} />
             </div>
-            <h3 className='text-github-blue-queen dark:text-white'>@github</h3>
+            <h3 className='text-github-blue-queen hover:underline dark:text-white'>
+              <Link href={github.url}>
+                @{github.name}
+              </Link>
+            </h3>
           </div>
 
         </div>

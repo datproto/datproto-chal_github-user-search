@@ -2,6 +2,8 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 export type GithubUser = {
   name: string
+  login: string
+  html_url: string
   avatar_url: string
   blog?: string
   bio?: string
@@ -10,6 +12,7 @@ export type GithubUser = {
   followers?: number
   following?: number
   public_repos?: number
+  created_at?: string
 }
 
 export const githubApi = createApi({
@@ -24,4 +27,4 @@ export const githubApi = createApi({
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export const { useGetGithubUserByNameQuery } = githubApi
+export const { useGetGithubUserByNameQuery, useLazyGetGithubUserByNameQuery } = githubApi

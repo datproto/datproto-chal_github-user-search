@@ -26,8 +26,14 @@
         src: url(./fonts/SpaceMono-BoldItalic.ttf);
     }
 }
+html, body {
+    @apply h-full w-full
+}
+body {
+    @apply bg-github-white-ghost dark:bg-github-gunmetal-dark flex justify-center items-center
+}
 main {
-    @apply bg-github-white-ghost dark:bg-github-gunmetal-dark h-screen font-github text-[13px] md:text-[15px] leading-8 flex flex-col items-center justify-center gap-4 lg:gap-6 px-6
+    @apply font-github text-[13px] md:text-[15px] leading-8 flex flex-col items-center justify-center gap-4 w-full md:max-w-2xl lg:max-w-4xl lg:gap-6 px-6
 }
 
 h1 ,h2 {
