@@ -72,35 +72,35 @@ function Card({name, github, avatar, bio, indices, personal_information}: ICard)
         <div id="card_footer" className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-y-3 lg:gap-y-4'>
 
           {/* Footer - Item */}
-          {personal_information && personal_information.location && (
-            <div className={`flex items-center gap-3 ${personal_information && personal_information.location ? 'opacity-100' : 'opacity-50'} opacity-50 md:order-1`}>
-              <div className='w-5'>
-                <Image src='/icon-location.svg' alt='icon-location' height={20} width={14} />
-              </div>
-                <h3 className='capitalize text-github-blue-queen dark:text-white'>{personal_information.location}</h3>
+          <div className={`flex items-center gap-3 ${personal_information && personal_information.location ? 'opacity-100' : 'opacity-50'} md:order-1`}>
+            <div className='w-5'>
+              <Image src='/icon-location.svg' alt='icon-location' height={20} width={14} />
             </div>
-          )}
+              <h3 className='capitalize text-github-blue-queen dark:text-white'>{personal_information?.location ? personal_information.location : 'Not Available'}</h3>
+          </div>
 
           {/* Footer - Item */}
-          {personal_information && personal_information.blog && (
-            <div className={`flex items-center gap-3 ${personal_information && personal_information.blog ? 'opacity-100' : 'opacity-50'} opacity-50 md:order-3`}>
-              <div className='w-5'>
-                <Image src='/icon-website.svg' alt='icon-location' height={20} width={14} />
-              </div>
-              <Link href={personal_information.blog}>
-                <h3 className='text-github-blue-queen hover:underline dark:text-white'>
+          <div className={`flex items-center gap-3 ${personal_information && personal_information.blog ? 'opacity-100' : 'opacity-50'} md:order-3`}>
+            <div className='w-5'>
+              <Image src='/icon-website.svg' alt='icon-location' height={20} width={14} />
+            </div>
+            <Link href={personal_information?.blog ? personal_information.blog : ''}>
+              <h3 className='text-github-blue-queen hover:underline dark:text-white'>
+                {personal_information?.blog ? (
                   <URLExtract url={personal_information.blog} />
-                </h3>
-              </Link>
-            </div>
-          )}
+                ) : (
+                  <span>Not Available</span>
+                )}
+              </h3>
+            </Link>
+          </div>
 
           {/* Footer - Item */}
-          <div className={`flex items-center gap-3 ${personal_information && personal_information.twitter ? 'opacity-100' : 'opacity-50'} opacity-50 md:order-2`}>
+          <div className={`flex items-center gap-3 ${personal_information && personal_information.twitter ? 'opacity-100' : 'opacity-50'} md:order-2`}>
             <div className='w-5'>
               <Image src='/icon-twitter.svg' alt='icon-location' height={18} width={20} />
             </div>
-            <h3 className='text-github-blue-queen dark:text-white'>{personal_information?.twitter}</h3>
+            <h3 className='text-github-blue-queen dark:text-white'>{personal_information?.twitter ? personal_information.twitter : 'Not Available'}</h3>
           </div>
 
           {/* Footer - Item */}
