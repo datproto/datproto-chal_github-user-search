@@ -30,7 +30,7 @@ function Card({name, github, avatar, bio, indices, personal_information}: ICard)
     <div id="card" className='flex w-full gap-6 rounded-2xl bg-github-white-main py-8 px-6 dark:bg-github-blue-yankees md:p-10 lg:p-12'>
       <Image src={avatar} alt='github-user-avatar' width={300} height={300} className='hidden h-28 w-28 rounded-full lg:block' />
 
-      <div className='flex flex-col gap-6'>
+      <div className='flex grow flex-col gap-6'>
         <div id='card_header' className='flex justify-between gap-5'>
           <Image src={avatar} alt='github-user-avatar' width={300} height={300} className='h-20 w-20 rounded-full lg:hidden' />
           <div className='flex grow flex-col justify-between lg:flex-row'>
